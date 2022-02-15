@@ -42,4 +42,13 @@ class DogView(View):
         return JsonResponse({"result" : "Created"}, status = 201)
      
      def get(self, request):
-         results = []
+         result_key = []
+         dog_list = Dog.objects.all()
+         for dog in dog_list:
+             dog_information = {
+                 "name"  : dog.name,
+                 "age"   : dog.age,
+                 "owner" : dog.owner.name
+             }
+             result_key.append(dog_information)
+         return JsonResponse({"result" : result_key}, status = 200)
