@@ -36,7 +36,7 @@ class DogView(View):
      def post(self, request):
         data = json.loads(request.body)
         owner = Owner.objects.get(id = data["owner_id"]).id
-        Dog.objects.create(name = data["name"], owner_id = owner)
+        Dog.objects.create(name = data["name"], age = data["age"], owner_id = owner)
 	    # owner = Owner.objects.get(id=data["owner_id"])
         # Dog.objects.create(name = data["name"], owner = owner)
         return JsonResponse({"result" : "Created"}, status = 201)
